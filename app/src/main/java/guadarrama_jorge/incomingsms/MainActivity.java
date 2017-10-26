@@ -2,6 +2,7 @@ package guadarrama_jorge.incomingsms;
 
 import android.Manifest;
 import android.content.ContentResolver;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -10,6 +11,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -116,12 +118,23 @@ public class MainActivity extends AppCompatActivity {
     public void updateList(final String newSms) {
         adapter.insert(newSms, 0);
         adapter.notifyDataSetChanged();
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com")));
     }
+
     private AdapterView.OnItemClickListener MyItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
             try {
                 Toast.makeText(getApplicationContext(), adapter.getItem(pos), Toast.LENGTH_SHORT).show();
+                Log.d("DEBUG", adapter.getItem(pos));
+                String message = adapter.getItem(pos);
+                String[] contentSms = message.split(":");
+                String typeSms = contentSms[0];
+                Uri uri = Uri.parse(contentSms[1]);
+                Log.d("DEBUG", typeSms);
+                Log.d("DEBUG", String.valueOf(uri));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://https://www.youtube.com/watch?v=NmirI1q7iqs")));
+
             } catch (Exception e) {
                 e.printStackTrace();
             }

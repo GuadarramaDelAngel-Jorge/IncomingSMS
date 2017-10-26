@@ -18,13 +18,12 @@ public class SMSReceiver extends BroadcastReceiver {
             if (bundle != null) {
                 // A PDU is a "protocol data unit". This is the industrial standard for SMS message
                 final Object[] pdusObj = (Object[]) bundle.get("pdus");
-                assert pdusObj != null;
-                for (Object aPdusObj : pdusObj) {
+                for (int i = 0; i < pdusObj.length; i++) {
                     // This will create an SmsMessage object from the received pdu
-                    SmsMessage sms = SmsMessage.createFromPdu((byte[]) aPdusObj);
+                    SmsMessage sms = SmsMessage.createFromPdu((byte[]) pdusObj[i]);
                     // Get sender phone number
-                    String sender;
-                    sender = sms.getDisplayOriginatingAddress();
+                    String phoneNumber = sms.getDisplayOriginatingAddress();
+                    String sender = phoneNumber;
                     String message = sms.getDisplayMessageBody();
                     String formattedText = String.format(context.getResources().getString(R.string.sms_message), sender, message);
                     // Display the SMS message in a Toast
