@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
                 Uri uri = Uri.parse(contentSms[1]);
                 Log.d("DEBUG", typeSms);
                 Log.d("DEBUG", String.valueOf(uri));
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://https://www.youtube.com/watch?v=NmirI1q7iqs")));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://https://www.youtube.com/watch?v=BZxA6fHnnpU")));
 
             } catch (Exception e) {
                 e.printStackTrace();
